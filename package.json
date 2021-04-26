@@ -1,33 +1,38 @@
 {
-  "name": "copy-link-text",
+  "name": "vite-create",
   "version": "1.0.0",
-  "description": "about chrome :~:text=",
-  "main": "index.ts",
+  "license": "MIT",
+  "author": "fuchunhui",
+  "main": "index.js",
+  "bin": {
+    "create-app": "index.js"
+  },
+  "files": [
+    "index.js",
+    "template-*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "changelog": "",
+    "release": "node /scripts/release.js --skipBuild"
   },
   "dependencies": {
-    "vue": "^3.0.5"
-  },
-  "devDependencies": {
-    "typescript": "^4.1.3",
-    "vite": "^2.2.3"
+    "enquirer": "^2.3.6",
+    "kolorist": "^1.2.9",
+    "minimist": "^1.2.5"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fuchunhui/copy-link-text.git"
+    "url": "git+https://github.com/fuchunhui/vite-create.git"
   },
   "keywords": [
-    "chrome",
-    "copy link text",
-    ":~:text="
+    "vite",
+    "create"
   ],
-  "author": "fuchunhui",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fuchunhui/copy-link-text/issues"
+    "url": "https://github.com/fuchunhui/vite-create/issues"
   },
-  "homepage": "https://github.com/fuchunhui/copy-link-text#readme"
+  "homepage": "https://github.com/fuchunhui/vite-create#readme",
+  "engines": {
+    "node": ">=12.0.0"
+  }
 }
