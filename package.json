@@ -13,9 +13,8 @@
   ],
   "scripts": {
     "changelog": "",
-    "release": "node /scripts/release.js --skipBuild",
-    "commitlint": "node scripts/verify-commit.js",
-    "prepare": "husky install"
+    "release": "node scripts/release.js --skipBuild",
+    "commitlint": "node scripts/verify-commit.js"
   },
   "dependencies": {
     "enquirer": "^2.3.6",
