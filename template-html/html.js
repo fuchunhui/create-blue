@@ -1,3 +1,4 @@
 export default {
-  name: 'test'
+  name: 'test',
+  value: 'test-again'
 };

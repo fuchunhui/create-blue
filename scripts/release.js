@@ -125,7 +125,7 @@ function updateVersion(version) {
  * @param {Function} run
  */
 async function publishPackage(version, run) {
-  const publicArgs = ['publish', '--access', 'public', '--dry-run'];
+  const publicArgs = ['publish', '--access', 'public'];
   if (args.tag) {
     publicArgs.push(`--tag`, args.tag);
   }
