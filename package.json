@@ -21,8 +21,6 @@
     "minimist": "^1.2.5"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
     "chalk": "^4.1.1",
     "eslint": "^7.25.0",
     "eslint-define-config": "^1.0.8",
@@ -46,10 +44,10 @@
     "commit-msg": "node scripts/verifyCommit.js"
   },
   "lint-staged": {
-    "*.{js,html,css,md}": "prettier --write",
-    "*.ts": [
+    "*.{html,css,md}": "prettier --write",
+    "*.js": [
       "eslint",
-      "prettier --parser=typescript --write"
+      "prettier --write"
     ]
   },
   "bugs": {
