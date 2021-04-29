@@ -1,12 +1,23 @@
 {
-  "name": "blue-html",
+  "name": "blue-vite",
   "version": "0.0.0",
+  "description": "",
+  "main": "index.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
   "devDependencies": {
+    "typescript": "^4.2.4",
     "vite": "^2.2.3"
-  }
+  },
+  "keywords": [
+    
+  ],
+  "author": "",
+  "bugs": {
+    
+  },
+  "homepage": ""
 }
