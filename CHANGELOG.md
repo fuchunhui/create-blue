@@ -1,6 +1,6 @@
-# 1.0.0 (2021-04-26)
-
+# 1.0.0 (2021-04-29)
 
 ### Features
 
-* create-app ()
+* create blue app🛸
+* add 😎template-vite😎 
