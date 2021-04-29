@@ -10,7 +10,8 @@ const cwd = process.cwd()
 const {
   blue,
   green,
-  red
+  red,
+  cyan
 } = require('kolorist')
 
 const TEMPLATES = [
@@ -75,22 +76,19 @@ async function init() {
   }
 
   let templateName = argv.template
-  let message = 'Select a template:'
-  let isValidTemplate = false
-
-  if (typeof templateName === 'string') {
-    isValidTemplate = templateNameList.includes(templateName)
-    message = `${templateName} isn't a valid template. Please choose from below:`
+  if (typeof templateName === 'string' && !templateNameList.includes(templateName)) {
+    console.log(`${templateName} isn't a valid template. Please choose from below:`)
+    templateName = '';
   }
 
-  if (!templateName || !isValidTemplate) {
+  if (!templateName) {
     /**
      * @type {{ template: string }}
      */
     const { template } = await prompt({
       type: 'select',
       name: 'template',
-      message,
+      message: 'Select a template:',
       format(name) {
         const template = TEMPLATES.find(v => v.name === name)
         return template
@@ -106,10 +104,9 @@ async function init() {
     templateName = template
   }
 
-  console.log(`\nScaffolding project in ${root}...`)
+  console.log(cyan(`\nScaffolding project in ${root}...`))
 
   const templateDir = path.join(__dirname, `template-${templateName}`)
-
   const write = (file, content) => {
     const targetPath = path.join(root, file)
     if (content) {
@@ -123,20 +120,16 @@ async function init() {
   for (const file of files.filter(f => f !== 'package.json')) {
     write(file)
   }
-
   const pkg = require(path.join(templateDir, `package.json`))
   pkg.name = packageName
   write('package.json', JSON.stringify(pkg, null, 2))
 
-  const pkgManager = /yarn/.test(process.env.npm_execpath) ? 'yarn' : 'npm'
-
-  console.log(`\nDone. Now run:\n`)
+  console.log(green(`\nDone. Now run:\n`))
   if (root !== cwd) {
     console.log(`  cd ${path.relative(cwd, root)}`)
   }
-  console.log(`  ${pkgManager === 'yarn' ? `yarn` : `npm install`}`)
-  console.log(`  ${pkgManager === 'yarn' ? `yarn dev` : `npm run dev`}`)
-  console.log()
+  console.log(`  npm install`)
+  console.log(`  npm run dev\n`)
 }
 
 function copy(src, dest) {
