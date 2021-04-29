@@ -5,32 +5,31 @@
   "author": "fuchunhui",
   "main": "index.js",
   "bin": {
-    "create-app": "index.js"
+    "create-blue": "index.js"
   },
   "files": [
     "index.js",
     "template-*"
   ],
   "scripts": {
-    "changelog": "",
     "release": "node scripts/release.js",
     "commitlint": "node scripts/verify-commit.js"
   },
   "dependencies": {
-    "kolorist": "^1.2.9"
+    "enquirer": "^2.3.6",
+    "kolorist": "^1.2.9",
+    "minimist": "^1.2.5"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "chalk": "^4.1.1",
-    "enquirer": "^2.3.6",
     "eslint": "^7.25.0",
     "eslint-define-config": "^1.0.8",
     "eslint-plugin-node": "^11.1.0",
     "execa": "^4.1.0",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
-    "minimist": "^1.2.5",
     "prettier": "^2.2.1",
     "semver": "^7.3.5"
   },

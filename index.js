@@ -1,36 +1,34 @@
 #!/usr/bin/env node
 
 // @ts-check
-const fs = require('fs')
 const path = require('path')
+const fs = require('fs')
 const argv = require('minimist')(process.argv.slice(2))
-const { prompt } = require('enquirer')
+const {prompt} = require('enquirer')
 const cwd = process.cwd()
 
 const {
-  yellow,
-  green,
-  cyan,
   blue,
-  magenta,
-  lightRed,
+  green,
   red
 } = require('kolorist')
 
-const FRAMEWORKS = [ // TODO rename
+const TEMPLATES = [
   {
-    name: 'vanilla',
-    color: yellow
+    name: 'vite',
+    color: green
+  },
+  {
+    name: 'doc',
+    color: red
+  },
+  {
+    name: 'md',
+    color: blue
   }
 ]
 
-const TEMPLATES = FRAMEWORKS.map(f => [f.name]).reduce((a, b) => a.concat(b), [])
-
-console.log(TEMPLATES);
-
-const renameFiles = {
-  _gitignore: '.gitignore'
-}
+const templateNameList = TEMPLATES.map(t => [t.name]).reduce((a, b) => a.concat(b), [])
 
 async function init() {
   let targetDir = argv._[0]
@@ -42,7 +40,7 @@ async function init() {
       type: 'input',
       name: 'projectName',
       message: `Project name:`,
-      initial: 'vite-project'
+      initial: 'blue-project'
     })
     targetDir = projectName
   }
@@ -76,71 +74,44 @@ async function init() {
     }
   }
 
-  // determine template
-  let template = argv.t || argv.template
-  let message = 'Select a framework:'
+  let templateName = argv.template
+  let message = 'Select a template:'
   let isValidTemplate = false
 
-  // --template expects a value
-  if (typeof template === 'string') {
-    isValidTemplate = TEMPLATES.includes(template)
-    message = `${template} isn't a valid template. Please choose from below:`
+  if (typeof templateName === 'string') {
+    isValidTemplate = templateNameList.includes(templateName)
+    message = `${templateName} isn't a valid template. Please choose from below:`
   }
 
-  if (!template || !isValidTemplate) {
+  if (!templateName || !isValidTemplate) {
     /**
-     * @type {{ framework: string }}
+     * @type {{ template: string }}
      */
-    const { framework } = await prompt({
+    const { template } = await prompt({
       type: 'select',
-      name: 'framework',
+      name: 'template',
       message,
       format(name) {
-        const framework = FRAMEWORKS.find((v) => v.name === name)
-        return framework
-          ? framework.color(framework.display || framework.name)
+        const template = TEMPLATES.find(v => v.name === name)
+        return template
+          ? template.color(template.name)
           : name
       },
-      choices: FRAMEWORKS.map((f) => ({
-        name: f.name,
-        value: f.name,
-        message: f.color(f.display || f.name)
+      choices: TEMPLATES.map(t => ({
+        name: t.name,
+        value: t.name,
+        message: t.color(t.name)
       }))
     })
-    const frameworkInfo = FRAMEWORKS.find((f) => f.name === framework)
-
-    if (frameworkInfo.variants) {
-      /**
-       * @type {{ name: string }}
-       */
-      const { name } = await prompt({
-        type: 'select',
-        name: 'name',
-        format(name) {
-          const variant = frameworkInfo.variants.find((v) => v.name === name)
-          return variant ? variant.color(variant.display || variant.name) : name
-        },
-        message: 'Select a variant:',
-        choices: frameworkInfo.variants.map((v) => ({
-          name: v.name,
-          value: v.name,
-          message: v.color(v.display || v.name)
-        }))
-      })
-      template = name
-    } else {
-      template = frameworkInfo.name
-    }
+    templateName = template
   }
 
   console.log(`\nScaffolding project in ${root}...`)
 
-  const templateDir = path.join(__dirname, `template-${template}`)
+  const templateDir = path.join(__dirname, `template-${templateName}`)
 
   const write = (file, content) => {
-    const targetPath = renameFiles[file]
-      ? path.join(root, renameFiles[file])
-      : path.join(root, file)
+    const targetPath = path.join(root, file)
     if (content) {
       fs.writeFileSync(targetPath, content)
     } else {
@@ -149,14 +120,12 @@ async function init() {
   }
 
   const files = fs.readdirSync(templateDir)
-  for (const file of files.filter((f) => f !== 'package.json')) {
+  for (const file of files.filter(f => f !== 'package.json')) {
     write(file)
   }
 
   const pkg = require(path.join(templateDir, `package.json`))
-
   pkg.name = packageName
-
   write('package.json', JSON.stringify(pkg, null, 2))
 
   const pkgManager = /yarn/.test(process.env.npm_execpath) ? 'yarn' : 'npm'
@@ -218,7 +187,7 @@ async function getValidPackageName(projectName) {
     /**
      * @type {{ inputPackageName: string }}
      */
-    const { inputPackageName } = await prompt({ // 不合法，重新输入，有一次校验逻辑
+    const { inputPackageName } = await prompt({
       type: 'input',
       name: 'inputPackageName',
       message: `Package name:`,
@@ -229,10 +198,6 @@ async function getValidPackageName(projectName) {
     return inputPackageName
   }
 }
-
-
-
-
 
 init().catch((e) => {
   console.error(e)
