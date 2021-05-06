@@ -1,0 +1,20 @@
+{
+  "name": "blue-doc",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "docsify serve docs"
+  },
+  "devDependencies": {
+    "docsify-cli": "^4.4.3"
+  },
+  "keywords": [
+    
+  ],
+  "author": "",
+  "bugs": {
+    
+  },
+  "homepage": ""
+}
