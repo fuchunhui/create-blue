@@ -122,7 +122,7 @@ async function init() {
     write(file)
   }
 
-  if (fs.existsSync(pfile)) {
+  if (fs.existsSync(path.join(templateDir, pfile))) {
     const pkg = require(path.join(templateDir, pfile))
     pkg.name = packageName
     write(pfile, JSON.stringify(pkg, null, 2))
