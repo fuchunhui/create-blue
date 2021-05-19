@@ -14,3 +14,12 @@ With Yarn:
 ```bash
 $ yarn create blue
 ```
+
+### Supported template presets include:
+
+* vite
+* doc
+* release
+
+See [create-blue](https://github.com/fuchunhui/create-blue) for more details on each template.
+
