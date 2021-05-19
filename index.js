@@ -24,7 +24,7 @@ const TEMPLATES = [
     color: red
   },
   {
-    name: 'md',
+    name: 'release',
     color: blue
   }
 ]
@@ -116,20 +116,28 @@ async function init() {
     }
   }
 
+  const pfile = 'package.json'
   const files = fs.readdirSync(templateDir)
-  for (const file of files.filter(f => f !== 'package.json')) {
+  for (const file of files.filter(f => f !== pfile)) {
     write(file)
   }
-  const pkg = require(path.join(templateDir, `package.json`))
-  pkg.name = packageName
-  write('package.json', JSON.stringify(pkg, null, 2))
+
+  if (fs.existsSync(pfile)) {
+    const pkg = require(path.join(templateDir, pfile))
+    pkg.name = packageName
+    write(pfile, JSON.stringify(pkg, null, 2))
+  }
 
   console.log(green(`\nDone. Now run:\n`))
   if (root !== cwd) {
     console.log(`  cd ${path.relative(cwd, root)}`)
   }
-  console.log(`  npm install`)
-  console.log(`  npm run dev\n`)
+
+  const nodevList = ['release'];
+  if (!nodevList.includes(templateName)) {
+    console.log(`  npm install`)
+    console.log(`  npm run dev\n`)
+  }
 }
 
 function copy(src, dest) {
