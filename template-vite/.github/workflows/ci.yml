@@ -23,7 +23,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Install and Build
         run: |
-          npm ci
+          npm install
           npm run build
           echo test, and install your project.
 
