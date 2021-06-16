@@ -1,3 +1,9 @@
+# 1.2.3 (2021-06-16)
+
+### Features
+
+* update vite and typescript.
+
 # 1.2.2 (2021-05-19)
 
 ### Features
