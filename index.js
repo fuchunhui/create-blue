@@ -11,7 +11,8 @@ const {
   blue,
   green,
   red,
-  cyan
+  cyan,
+  magenta
 } = require('kolorist')
 
 const TEMPLATES = [
@@ -26,10 +27,18 @@ const TEMPLATES = [
   {
     name: 'release',
     color: blue
+  },
+  {
+    name: 'husky',
+    color: magenta
   }
 ]
 
 const templateNameList = TEMPLATES.map(t => [t.name]).reduce((a, b) => a.concat(b), [])
+
+const renameFiles = {
+  _gitignore: '.gitignore'
+}
 
 async function init() {
   let targetDir = argv._[0]
@@ -108,7 +117,9 @@ async function init() {
 
   const templateDir = path.join(__dirname, `template-${templateName}`)
   const write = (file, content) => {
-    const targetPath = path.join(root, file)
+    const targetFile = renameFiles[file] || file
+    const targetPath = path.join(root, targetFile)
+
     if (content) {
       fs.writeFileSync(targetPath, content)
     } else {

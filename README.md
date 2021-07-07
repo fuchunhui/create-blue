@@ -20,6 +20,7 @@ $ yarn create blue
 * vite
 * doc
 * release
+* husky
 
 See [create-blue](https://github.com/fuchunhui/create-blue) for more details on each template.
 
