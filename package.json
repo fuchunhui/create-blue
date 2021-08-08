@@ -21,8 +21,8 @@
     "minimist": "^1.2.5"
   },
   "devDependencies": {
-    "chalk": "^4.1.1",
-    "eslint": "^7.30.0",
+    "chalk": "^4.1.2",
+    "eslint": "^7.32.0",
     "eslint-define-config": "^1.0.9",
     "eslint-plugin-node": "^11.1.0",
     "execa": "^5.1.1",
