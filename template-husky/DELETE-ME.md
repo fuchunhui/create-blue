@@ -17,6 +17,6 @@ scripts/verify-commit.js
 }
 ```
 
-4. rename `_gitignore` to `.gitignore`.
+4. rename `.husky/_gitignore` to `.gitignore`.
 
 5. delete this guide.
