@@ -21,9 +21,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'lib/index.ts'),
-      name: 'imeme',
+      name: 'blue',
       formats: ['es', 'cjs', 'umd', 'iife'],
-      fileName: (format: string) => `imeme.${format}.js`
+      fileName: (format: string) => `blue.${format}.js`
     }
   }
 });
