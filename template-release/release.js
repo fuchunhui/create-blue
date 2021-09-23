@@ -81,7 +81,8 @@ async function main() {
   const { yes } = await prompt({
     type: 'confirm',
     name: 'yes',
-    message: `Releasing ${tag}. Confirm?`
+    message: `Releasing ${tag}. Confirm?`,
+    initial: 'true'
   });
 
   if (!yes) {

@@ -14,5 +14,6 @@ console.log('blue-project.');
 .blue-project {
   width: 100%;
   height: 100%;
+  font-size: 64px;
 }
 </style>
