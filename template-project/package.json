@@ -1,0 +1,56 @@
+{
+  "name": "blue-project",
+  "version": "0.0.1",
+  "description": "custom construct for future.",
+  "repository": "fuchunhui/blue-project",
+  "main": "dist/blue-project.cjs.js",
+  "module": "dist/blue-project.es.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "lib": "vue-tsc --noEmit && vite build --mode lib --config vite.lib.config.ts",
+    "serve": "vite preview",
+    "deploy": "",
+    "release": "npm run lib && node scripts/release.js",
+    "commitlint": "node scripts/verify-commit.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.4"
+  },
+  "devDependencies": {
+    "@types/estree": "^0.0.50",
+    "@types/node": "^16.9.6",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "@vitejs/plugin-vue": "^1.9.0",
+    "@vue/compiler-sfc": "^3.2.14",
+    "chalk": "^4.1.2",
+    "enquirer": "^2.3.6",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^7.18.0",
+    "execa": "^5.1.1",
+    "husky": "^7.0.2",
+    "less": "^4.1.1",
+    "minimist": "^1.2.5",
+    "semver": "^7.3.5",
+    "typescript": "^4.4.3",
+    "vite": "^2.5.10",
+    "vue": "^3.2.14",
+    "vue-tsc": "^0.3.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "blue-project",
+    "vite",
+    "lib"
+  ],
+  "author": "fuchunhui",
+  "bugs": {},
+  "homepage": "",
+  "engines": {
+    "node": ">=12.0"
+  }
+}
