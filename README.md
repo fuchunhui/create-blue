@@ -21,6 +21,7 @@ $ yarn create blue
 * doc
 * release
 * husky
+* project
 
 See [create-blue](https://github.com/fuchunhui/create-blue) for more details on each template.
 

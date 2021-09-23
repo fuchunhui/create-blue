@@ -11,6 +11,7 @@ const {
   blue,
   green,
   red,
+  yellow,
   cyan,
   magenta
 } = require('kolorist')
@@ -31,6 +32,10 @@ const TEMPLATES = [
   {
     name: 'husky',
     color: magenta
+  },
+  {
+    name: 'project',
+    color: yellow
   }
 ]
 
