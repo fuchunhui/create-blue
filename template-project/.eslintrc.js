@@ -49,10 +49,7 @@ module.exports = {
     'vue/html-indent': ['error', 2],
     'vue/max-attributes-per-line': ['error', {
       'singleline': 10,
-      'multiline': {
-        'max': 1,
-        'allowFirstLine': false
-      }
+      'multiline': 5
     }],
     'vue/html-closing-bracket-spacing': ['error', {
       'startTag': 'never',
