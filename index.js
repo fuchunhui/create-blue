@@ -14,7 +14,7 @@ import {
 
 const {prompt} = enquirer;
 const cwd = process.cwd();
-const __dirname = path.resolve();
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const TEMPLATES = [
   {
