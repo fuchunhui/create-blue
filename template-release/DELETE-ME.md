@@ -1,3 +1,5 @@
+0. `package.json` need setting `"type": "module"`
+
 1. install package
 ```
 npm install -D execa minimist semver chalk enquirer
