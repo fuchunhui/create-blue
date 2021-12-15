@@ -2,7 +2,7 @@
 
 1. install package
 ```
-npm install -D execa minimist semver chalk enquirer
+npm install -D execa semver chalk enquirer
 ```
 
 2. move release.js to anywhere, e.g. 
