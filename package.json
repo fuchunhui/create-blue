@@ -1,6 +1,6 @@
 {
   "name": "create-blue",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "license": "MIT",
   "author": "fuchunhui",
   "main": "index.js",
@@ -17,8 +17,7 @@
   },
   "dependencies": {
     "enquirer": "^2.3.6",
-    "kolorist": "^1.5.0",
-    "minimist": "^1.2.5"
+    "kolorist": "^1.5.0"
   },
   "devDependencies": {
     "chalk": "^4.1.2",

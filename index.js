@@ -1,20 +1,20 @@
 #!/usr/bin/env node
 
-// @ts-check
-const path = require('path')
-const fs = require('fs')
-const argv = require('minimist')(process.argv.slice(2))
-const {prompt} = require('enquirer')
-const cwd = process.cwd()
-
-const {
+import path from 'path';
+import * as fs from 'fs';
+import enquirer from 'enquirer';
+import {
   blue,
   green,
   red,
   yellow,
   cyan,
   magenta
-} = require('kolorist')
+} from 'kolorist';
+
+const {prompt} = enquirer;
+const cwd = process.cwd();
+const __dirname = path.resolve();
 
 const TEMPLATES = [
   {
@@ -39,26 +39,19 @@ const TEMPLATES = [
   }
 ]
 
-const templateNameList = TEMPLATES.map(t => [t.name]).reduce((a, b) => a.concat(b), [])
-
 const renameFiles = {
   _gitignore: '.gitignore'
 }
 
 async function init() {
-  let targetDir = argv._[0]
-  if (!targetDir) {
-    /**
-     * @type {{ projectName: string }}
-     */
-    const { projectName } = await prompt({
-      type: 'input',
-      name: 'projectName',
-      message: `Project name:`,
-      initial: 'blue-project'
-    })
-    targetDir = projectName
-  }
+  const { projectName } = await prompt({
+    type: 'input',
+    name: 'projectName',
+    message: `Project name:`,
+    initial: 'blue-project'
+  })
+  const targetDir = projectName
+
   const packageName = await getValidPackageName(targetDir)
   const root = path.join(cwd, targetDir)
 
@@ -77,9 +70,9 @@ async function init() {
         message:
           (targetDir === '.'
             ? 'Current directory'
-            : `Target directory ${targetDir}`) +
-          ' is not empty.\n' +
-          'Remove existing files and continue?'
+            : `Target directory ${targetDir}`)
+              + ' is not empty.\n'
+              + 'Remove existing files and continue?'
       })
       if (yes) {
         emptyDir(root)
@@ -89,34 +82,26 @@ async function init() {
     }
   }
 
-  let templateName = argv.template
-  if (typeof templateName === 'string' && !templateNameList.includes(templateName)) {
-    console.log(`${templateName} isn't a valid template. Please choose from below:`)
-    templateName = '';
-  }
-
-  if (!templateName) {
-    /**
-     * @type {{ template: string }}
-     */
-    const { template } = await prompt({
-      type: 'select',
-      name: 'template',
-      message: 'Select a template:',
-      format(name) {
-        const template = TEMPLATES.find(v => v.name === name)
-        return template
-          ? template.color(template.name)
-          : name
-      },
-      choices: TEMPLATES.map(t => ({
-        name: t.name,
-        value: t.name,
-        message: t.color(t.name)
-      }))
-    })
-    templateName = template
-  }
+  /**
+   * @type {{ template: string }}
+   */
+  const { template } = await prompt({
+    type: 'select',
+    name: 'template',
+    message: 'Select a template:',
+    format(name) {
+      const template = TEMPLATES.find(v => v.name === name)
+      return template
+        ? template.color(template.name)
+        : name
+    },
+    choices: TEMPLATES.map(t => ({
+      name: t.name,
+      value: t.name,
+      message: t.color(t.name)
+    }))
+  })
+  const templateName = template
 
   console.log(cyan(`\nScaffolding project in ${root}...`))
 
@@ -139,9 +124,10 @@ async function init() {
   }
 
   if (fs.existsSync(path.join(templateDir, pfile))) {
-    const pkg = require(path.join(templateDir, pfile))
-    pkg.name = packageName
-    write(pfile, JSON.stringify(pkg, null, 2))
+    const pkgPath = path.resolve(templateDir, pfile);
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+    pkg.name = packageName;
+    write(pfile, JSON.stringify(pkg, null, 2));
   }
 
   console.log(green(`\nDone. Now run:\n`))
@@ -216,6 +202,6 @@ async function getValidPackageName(projectName) {
   }
 }
 
-init().catch((e) => {
+init().catch(e => {
   console.error(e)
 })
