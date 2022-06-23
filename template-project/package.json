@@ -15,11 +15,11 @@
     "commitlint": "node scripts/verify-commit.js"
   },
   "dependencies": {
-    "axios": "^0.24.0"
+    "axios": "^0.27.2"
   },
   "devDependencies": {
-    "@types/estree": "^0.0.50",
-    "@types/node": "^16.11.13",
+    "@types/estree": "^0.0.51",
+    "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "@vitejs/plugin-vue": "^2.0.1",
@@ -27,16 +27,16 @@
     "chalk": "^5.0.0",
     "enquirer": "^2.3.6",
     "eslint": "^8.3.0",
-    "eslint-plugin-vue": "^8.1.1",
-    "execa": "^5.1.1",
-    "husky": "^7.0.4",
+    "eslint-plugin-vue": "^9.1.1",
+    "execa": "^6.1.0",
+    "husky": "^8.0.1",
     "less": "^4.1.2",
     "rollup-plugin-copy": "^3.4.0",
     "semver": "^7.3.5",
     "typescript": "^4.5.4",
     "vite": "^2.7.2",
     "vue": "^3.2.26",
-    "vue-tsc": "^0.29.8"
+    "vue-tsc": "^0.38.1"
   },
   "files": [
     "dist",

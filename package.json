@@ -1,6 +1,6 @@
 {
   "name": "create-blue",
-  "version": "1.5.3",
+  "version": "1.6.1",
   "license": "MIT",
   "author": "fuchunhui",
   "main": "index.js",
@@ -17,18 +17,18 @@
   },
   "dependencies": {
     "enquirer": "^2.3.6",
-    "kolorist": "^1.5.0"
+    "kolorist": "^1.5.1"
   },
   "devDependencies": {
-    "chalk": "^4.1.2",
-    "eslint": "^8.1.0",
-    "eslint-define-config": "^1.1.2",
+    "chalk": "^5.0.1",
+    "eslint": "^8.18.0",
+    "eslint-define-config": "^1.5.1",
     "eslint-plugin-node": "^11.1.0",
-    "execa": "^5.1.1",
-    "husky": "^7.0.4",
-    "lint-staged": "^11.2.6",
-    "prettier": "^2.4.1",
-    "semver": "^7.3.5"
+    "execa": "^6.1.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.2",
+    "prettier": "^2.7.1",
+    "semver": "^7.3.7"
   },
   "type": "module",
   "repository": {
