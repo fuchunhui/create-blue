@@ -12,6 +12,8 @@ const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
 const pkgName = pkg.name;
 const currentVersion = pkg.version;
 
+const message = process.argv.splice(2)[0];
+
 /**
  * @type {import('semver').ReleaseType[]}
  */
@@ -88,7 +90,7 @@ async function main() {
   if (stdout) {
     step('\nCommitting changes...');
     await run('git', ['add', '-A']);
-    await run('git', ['commit', '-m', `release: ${tag}`]);
+    await run('git', ['commit', '-m', `release: ${tag} ${message}`]);
   } else {
     console.log('No changes to commit.');
   }
